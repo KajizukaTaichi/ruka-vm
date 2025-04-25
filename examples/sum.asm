@@ -1,7 +1,7 @@
 main:
-    psh 1       ; スタックに値を積む
+    psh 5       ; スタックに値を積む
+    psh 8
     psh 2
-    psh 3
     cal sum     ; 合計する
     pop rax     ; 結果をスタックから取り出す
     sta 0, rax  ; 結果をメモリに保存
