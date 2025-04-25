@@ -1,4 +1,5 @@
 use crate::*;
+use colored::*;
 
 impl RukaVM {
     pub fn new(program: Vec<Instruction>) -> Self {
@@ -109,17 +110,28 @@ impl RukaVM {
     }
 
     pub fn dump(&self) {
+        macro_rules! view {
+            ($val: expr) => {{
+                let formatted = format!("{:08}", $val);
+                if $val != 0.0 {
+                    formatted.bold()
+                } else {
+                    formatted.normal()
+                }
+            }};
+        }
+
         println!("Registers:");
-        print!(" PC : {:08}\t", self.pc);
-        println!("RAX: {:08}", self.rax);
-        print!(" RDX: {:08}\t", self.rdx);
-        println!("RCX: {:08}", self.rcx);
-        print!(" RBX: {:08}\t", self.rbx);
-        println!("RSP: {:08}", self.rsp);
+        print!(" PC : {:08}\t", view!(self.pc));
+        println!("RAX: {:08}", view!(self.rax));
+        print!(" RDX: {:08}\t", view!(self.rdx));
+        println!("RCX: {:08}", view!(self.rcx));
+        print!(" RBX: {:08}\t", view!(self.rbx));
+        println!("RSP: {:08}", view!(self.rsp));
 
         println!("Stack Area:");
         for (i, val) in self.stack.iter().enumerate() {
-            println!(" {}: {}", i, val);
+            println!(" {}: {}", i, view!(*val));
         }
 
         println!("Memory Area:");
@@ -127,7 +139,7 @@ impl RukaVM {
             let i = i * 8;
             print!(" {i:02} ~ {:02}: ", i + 7);
             for val in vals {
-                print!("{:08} ", val);
+                print!("{} ", view!(*val));
             }
             println!()
         }
