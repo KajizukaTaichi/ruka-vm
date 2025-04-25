@@ -1,6 +1,6 @@
 #[derive(Debug, Clone, PartialEq)]
 pub struct RukaVM {
-    memory: [f64; 8],
+    memory: [f64; 64],
     program: Vec<Instruction>,
     call: Vec<f64>,
     stack: Vec<f64>,
@@ -59,7 +59,7 @@ impl RukaVM {
             program,
             call: Vec::new(),
             stack: Vec::new(),
-            memory: [0.0; 8],
+            memory: [0.0; 64],
             rax: 0.0,
             rbx: 0.0,
             rcx: 0.0,
