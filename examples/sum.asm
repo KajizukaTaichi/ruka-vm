@@ -8,7 +8,9 @@ main:
 
 ; スタックにある値を合計する関数
 sum:
+    mov rax, 0      ; 合計値を初期化
+loop:
     pop rdx         ; スタックから値を取り出す
     add rax, rdx    ; 加算する (合計値はraxに格納)
-    jmp rsp, sum    ; スタックが空になるまで繰り返す
+    jmp rsp, loop   ; スタックが空になるまで繰り返す
     ret
