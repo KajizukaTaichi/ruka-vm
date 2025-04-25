@@ -1,5 +1,6 @@
 mod asm;
 mod eval;
+pub use asm::asm;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct RukaVM {
