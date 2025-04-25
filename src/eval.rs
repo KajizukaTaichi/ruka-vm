@@ -4,7 +4,7 @@ use colored::*;
 impl RukaVM {
     pub fn new(program: Vec<Instruction>) -> Self {
         println!("Welcome to Ruka VM!");
-        println!("{} bytes free", std::mem::size_of::<[f64; MEMORY_SIZE]>());
+        println!("{} Bytes free", std::mem::size_of::<[f64; MEMORY_SIZE]>());
 
         RukaVM {
             pc: 0.0,
