@@ -12,7 +12,7 @@ fn main() {
         // スタックにある値を全部足す関数
         Instruction::Pop(Register::Rdx), // 5
         Instruction::Add(Register::Rax, Operand::Register(Register::Rdx)), // 6
-        // ループのトップへ
+        // スタックに値がある限り繰り返す
         Instruction::Jmp(Operand::Register(Register::Rsp), Operand::Literal(5.0)), // 7
         Instruction::Ret,                                                          // 8
     ]);
