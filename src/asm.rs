@@ -9,11 +9,17 @@ pub fn asm(source: &str) -> Option<Vec<Instruction>> {
     let mut index = 0;
     for line in source.lines() {
         let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
+        if let Some(label) = line.trim().strip_suffix(":") {
+            labels.insert(label.trim().to_string(), index as f64);
+        } else {
+            index += 1;
+        }
+    }
+    dbg!(&labels);
+    for line in source.lines() {
+        let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
         if let Some(mnemonic) = Instruction::asm(line.trim(), &mut labels) {
             instructions.push(mnemonic);
-            index += 1;
-        } else {
-            labels.insert(line.trim().to_string(), index as f64);
         }
     }
     Some(instructions)
