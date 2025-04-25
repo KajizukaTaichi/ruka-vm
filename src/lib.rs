@@ -157,6 +157,31 @@ impl RukaVM {
         Some(())
     }
 
+    pub fn dump(&self) {
+        println!("Registers:");
+        print!(" PC : {:08}\t", self.pc);
+        println!("RAX: {:08}", self.rax);
+        print!(" RDX: {:08}\t", self.rdx);
+        println!("RCX: {:08}", self.rcx);
+        print!(" RBX: {:08}\t", self.rbx);
+        println!("RSP: {:08}", self.rsp);
+
+        println!("Stack Area:");
+        for (i, val) in self.stack.iter().enumerate() {
+            println!(" {}: {}", i, val);
+        }
+
+        println!("Memory Area:");
+        for (i, vals) in self.memory.chunks(8).enumerate() {
+            let i = i * 8;
+            print!(" {i:02} ~ {:02}: ", i + 7);
+            for val in vals {
+                print!("{:08} ", val);
+            }
+            println!()
+        }
+    }
+
     fn get_register(&mut self, register: Register) -> &mut f64 {
         match register {
             Register::Pc => &mut self.pc,
