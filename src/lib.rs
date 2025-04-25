@@ -2,9 +2,11 @@ mod asm;
 mod eval;
 pub use asm::asm;
 
+pub const MEMORY_SIZE: usize = 64;
+
 #[derive(Debug, Clone, PartialEq)]
 pub struct RukaVM {
-    memory: [f64; 64],
+    memory: [f64; MEMORY_SIZE],
     program: Vec<Instruction>,
     call: Vec<f64>,
     stack: Vec<f64>,
