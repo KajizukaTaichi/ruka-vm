@@ -3,7 +3,10 @@ use crate::*;
 pub fn asm(source: &str) -> Option<Vec<Instruction>> {
     let mut instructions = Vec::new();
     for line in source.lines() {
-        instructions.push(Instruction::asm(line)?);
+        let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
+        if let Some(mnemonic) = Instruction::asm(line) {
+            instructions.push(mnemonic);
+        }
     }
     Some(instructions)
 }
