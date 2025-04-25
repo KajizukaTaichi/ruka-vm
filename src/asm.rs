@@ -1,7 +1,15 @@
 use crate::*;
 
+pub fn asm(source: &str) -> Option<Vec<Instruction>> {
+    let mut instructions = Vec::new();
+    for line in source.lines() {
+        instructions.push(Instruction::asm(line)?);
+    }
+    Some(instructions)
+}
+
 impl Instruction {
-    pub fn asm(source: &str) -> Option<Self> {
+    fn asm(source: &str) -> Option<Self> {
         let (opecode, operands) = source.split_once(' ')?;
         let operands = operands.split(',').collect::<Vec<_>>();
         Some(match opecode {
@@ -50,7 +58,7 @@ impl Instruction {
 }
 
 impl Operand {
-    pub fn asm(source: &str) -> Option<Self> {
+    fn asm(source: &str) -> Option<Self> {
         Some(if let Some(register) = Register::asm(source) {
             Self::Register(register)
         } else if let Ok(literal) = source.parse() {
@@ -62,7 +70,7 @@ impl Operand {
 }
 
 impl Register {
-    pub fn asm(source: &str) -> Option<Self> {
+    fn asm(source: &str) -> Option<Self> {
         Some(match source {
             "pc" => Self::Pc,
             "rax" => Self::Rax,
