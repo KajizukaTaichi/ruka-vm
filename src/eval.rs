@@ -77,6 +77,13 @@ impl RukaVM {
                     self.pc = addr;
                     continue;
                 }
+                Instruction::Sys(syscall_id) => {
+                    let syscall_id = self.get_operand(syscall_id);
+                    match syscall_id {
+                        0.0 => println!("{}", self.rax as u8 as char),
+                        _ => return None,
+                    }
+                }
                 Instruction::Ret => self.pc = self.call.pop()?,
                 Instruction::Lda(reg, addr) => {
                     let addr = self.get_operand(addr);
