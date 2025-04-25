@@ -13,7 +13,7 @@ pub fn asm(source: &str) -> Option<Vec<Instruction>> {
 
 impl Instruction {
     fn asm(source: &str) -> Option<Self> {
-        let (opecode, operands) = source.split_once(' ')?;
+        let (opecode, operands) = source.split_once(' ').unwrap_or((source, ""));
         let operands = operands.split(',').collect::<Vec<_>>();
         Some(match opecode {
             "mov" => Self::Mov(
