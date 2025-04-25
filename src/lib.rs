@@ -30,6 +30,7 @@ pub enum Instruction {
     Nor(Register, Operand),
     Jmp(Operand, Operand),
     Cal(Operand),
+    Sys(Operand),
     Ret,
     Lda(Register, Operand),
     Sta(Operand, Operand),
