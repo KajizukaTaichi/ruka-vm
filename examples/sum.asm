@@ -5,6 +5,7 @@ main:
     cal sum
     sta 0, rax
     hlt
+
 sum:
     pop rdx
     add rax, rdx
