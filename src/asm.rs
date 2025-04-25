@@ -15,7 +15,6 @@ pub fn asm(source: &str) -> Option<Vec<Instruction>> {
             index += 1;
         }
     }
-    dbg!(&labels);
     for line in source.lines() {
         let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
         if let Some(mnemonic) = Instruction::asm(line.trim(), &mut labels) {
