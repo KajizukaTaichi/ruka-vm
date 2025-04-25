@@ -42,6 +42,7 @@ impl Instruction {
                 Operand::asm(operands.get(0)?.trim())?,
                 Operand::asm(operands.get(1)?.trim())?,
             ),
+            "cal" => Self::Cal(Operand::asm(operands.get(0)?.trim())?),
             "ret" => Self::Ret,
             "lda" => Self::Lda(
                 Register::asm(operands.get(0)?.trim())?,
