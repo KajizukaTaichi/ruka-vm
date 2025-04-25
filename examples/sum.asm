@@ -1,5 +1,5 @@
 main:
-    psh 1   ; スタックに値を積む
+    psh 1       ; スタックに値を積む
     psh 2
     psh 3
     cal sum     ; 合計する
@@ -9,10 +9,10 @@ main:
 
 ; スタックにある値を合計する関数
 sum:
-    mov rax, 0      ; 合計値を初期化
+    mov rax, 0          ; 合計値を初期化
 loop_start:
     mov rcx, rsp        ; スタックが空ならループ終了
-    nor rcx, 0
+    nor rcx, rcx
     jmp rcx, loop_end
     pop rdx             ; スタックから値を取り出す
     add rax, rdx        ; 加算する
