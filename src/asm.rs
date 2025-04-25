@@ -60,6 +60,7 @@ impl Instruction {
                 Operand::asm(operands.get(1)?.trim(), labels)?,
             ),
             "cal" => Self::Cal(Operand::asm(operands.get(0)?.trim(), labels)?),
+            "sys" => Self::Sys(Operand::asm(operands.get(0)?.trim(), labels)?),
             "ret" => Self::Ret,
             "lda" => Self::Lda(
                 Register::asm(operands.get(0)?.trim())?,
