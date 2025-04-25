@@ -51,6 +51,10 @@ impl Instruction {
                 Register::asm(operands.get(0)?.trim())?,
                 Operand::asm(operands.get(1)?.trim(), labels)?,
             ),
+            "nor" => Self::Nor(
+                Register::asm(operands.get(0)?.trim())?,
+                Operand::asm(operands.get(1)?.trim(), labels)?,
+            ),
             "jmp" => Self::Jmp(
                 Operand::asm(operands.get(0)?.trim(), labels)?,
                 Operand::asm(operands.get(1)?.trim(), labels)?,
