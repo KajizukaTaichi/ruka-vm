@@ -11,7 +11,7 @@ pub fn asm(source: &str) -> Option<Vec<Instruction>> {
         let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
         if let Some(label) = line.trim().strip_suffix(":") {
             labels.insert(label.trim().to_string(), index as f64);
-        } else {
+        } else if !line.trim().is_empty() {
             index += 1;
         }
     }
