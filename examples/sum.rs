@@ -16,6 +16,6 @@ fn main() {
         Instruction::Jmp(Operand::Register(Register::Rsp), Operand::Literal(5.0)), // 7
         Instruction::Ret,                                                          // 8
     ]);
-    vm.run().unwrap();
-    dbg!(&vm);
+    vm.run();
+    vm.dump();
 }
