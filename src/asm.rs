@@ -1,7 +1,7 @@
 use crate::*;
-use std::collections::HashMap;
+use indexmap::IndexMap;
 
-type Labels = HashMap<String, f64>;
+type Labels = IndexMap<String, f64>;
 
 pub fn asm(source: &str) -> Option<Vec<Instruction>> {
     let mut instructions = Vec::new();
