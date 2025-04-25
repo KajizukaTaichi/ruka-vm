@@ -122,12 +122,9 @@ impl RukaVM {
         }
 
         println!("Registers:");
-        print!(" PC : {:08}\t", view!(self.pc));
-        println!("RAX: {:08}", view!(self.rax));
-        print!(" RDX: {:08}\t", view!(self.rdx));
-        println!("RCX: {:08}", view!(self.rcx));
-        print!(" RBX: {:08}\t", view!(self.rbx));
-        println!("RSP: {:08}", view!(self.rsp));
+        println!(" PC : {:08}  RAX: {:08}", view!(self.pc), view!(self.rax));
+        println!(" RDX: {:08}  RCX: {:08}", view!(self.rdx), view!(self.rcx));
+        println!(" RBX: {:08}  RSP: {:08}", view!(self.rbx), view!(self.rsp));
 
         println!("Stack Area:");
         for (i, val) in self.stack.iter().enumerate() {
