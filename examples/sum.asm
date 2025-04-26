@@ -3,7 +3,7 @@ main:
     psh 8
     psh 2
     cal sum     ; 合計する
-    pop rax     ; 結果をスタックから取り出す
+    pop rax     ; スタックから結果を取り出す
     sta 0, rax  ; 結果をメモリに保存
     hlt         ; プログラムを終了する
 
