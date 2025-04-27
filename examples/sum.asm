@@ -4,7 +4,7 @@ main:
     psh 2
     cal sum     ; 合計する
     pop ar      ; スタックから結果を取り出す
-    mov ba, 0   ; 保存先アドレス: 0
+    mov ba, 8   ; 保存先アドレス: 8
     sta ba, ar  ; 結果をメモリに保存
     hlt         ; プログラムを終了する
 
