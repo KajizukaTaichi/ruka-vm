@@ -60,7 +60,6 @@ impl Instruction {
                 Operand::asm(operands.get(1)?.trim(), labels)?,
             ),
             "cal" => Self::Cal(Operand::asm(operands.get(0)?.trim(), labels)?),
-            "sys" => Self::Sys(Operand::asm(operands.get(0)?.trim(), labels)?),
             "ret" => Self::Ret,
             "lda" => Self::Lda(
                 Register::asm(operands.get(0)?.trim())?,
@@ -97,11 +96,11 @@ impl Register {
     fn asm(source: &str) -> Option<Self> {
         Some(match source {
             "pc" => Self::Pc,
-            "rax" => Self::Rax,
-            "rdx" => Self::Rdx,
-            "rcx" => Self::Rcx,
-            "rbx" => Self::Rbx,
-            "rsp" => Self::Rsp,
+            "ar" => Self::Ar,
+            "dr" => Self::Dr,
+            "cr" => Self::Cr,
+            "ba" => Self::Ba,
+            "sp" => Self::Sp,
             _ => return None,
         })
     }
