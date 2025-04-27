@@ -123,7 +123,7 @@ impl RukaVM {
         }
 
         println!("Registers:");
-        println!(" PC : {:08}  AR: {:08}", view!(self.pc), view!(self.ar));
+        println!(" PC: {:08}  AR: {:08}", view!(self.pc), view!(self.ar));
         println!(" DR: {:08}  CR: {:08}", view!(self.dr), view!(self.cr));
         println!(" BA: {:08}  SP: {:08}", view!(self.ba), view!(self.sp));
 
