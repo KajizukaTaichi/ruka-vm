@@ -13,11 +13,11 @@ impl RukaVM {
             call: Vec::new(),
             stack: Vec::new(),
             memory: [0.0; MEMORY_SIZE],
-            rax: 0.0,
-            rbx: 0.0,
-            rcx: 0.0,
-            rdx: 0.0,
-            rsp: 0.0,
+            ar: 0.0,
+            dr: 0.0,
+            cr: 0.0,
+            ba: 0.0,
+            sp: 0.0,
         }
     }
 
@@ -78,13 +78,6 @@ impl RukaVM {
                     self.pc = addr;
                     continue;
                 }
-                Instruction::Sys(syscall_id) => {
-                    let syscall_id = self.get_operand(syscall_id);
-                    match syscall_id {
-                        0.0 => println!("{}", self.rax as u8 as char),
-                        _ => return None,
-                    }
-                }
                 Instruction::Ret => self.pc = self.call.pop()?,
                 Instruction::Lda(reg, addr) => {
                     let addr = self.get_operand(addr);
@@ -101,13 +94,13 @@ impl RukaVM {
                 Instruction::Psh(val) => {
                     let val = self.get_operand(val);
                     self.stack.push(val);
-                    self.rsp += 1.0;
+                    self.sp += 1.0;
                 }
                 Instruction::Pop(reg) => {
                     let val = self.stack.pop()?;
                     let reg = self.get_register(reg);
                     *reg = val;
-                    self.rsp -= 1.0;
+                    self.sp -= 1.0;
                 }
                 Instruction::Nop => {}
                 Instruction::Hlt => break,
@@ -130,9 +123,9 @@ impl RukaVM {
         }
 
         println!("Registers:");
-        println!(" PC : {:08}  RAX: {:08}", view!(self.pc), view!(self.rax));
-        println!(" RDX: {:08}  RCX: {:08}", view!(self.rdx), view!(self.rcx));
-        println!(" RBX: {:08}  RSP: {:08}", view!(self.rbx), view!(self.rsp));
+        println!(" PC : {:08}  AR: {:08}", view!(self.pc), view!(self.ar));
+        println!(" DR: {:08}  CR: {:08}", view!(self.dr), view!(self.cr));
+        println!(" BA: {:08}  SP: {:08}", view!(self.ba), view!(self.sp));
 
         println!("Stack Area:");
         for (i, val) in self.stack.iter().enumerate() {
@@ -153,11 +146,11 @@ impl RukaVM {
     fn get_register(&mut self, register: Register) -> &mut f64 {
         match register {
             Register::Pc => &mut self.pc,
-            Register::Rax => &mut self.rax,
-            Register::Rdx => &mut self.rdx,
-            Register::Rcx => &mut self.rcx,
-            Register::Rbx => &mut self.rbx,
-            Register::Rsp => &mut self.rsp,
+            Register::Ar => &mut self.ar,
+            Register::Dr => &mut self.dr,
+            Register::Cr => &mut self.cr,
+            Register::Ba => &mut self.ba,
+            Register::Sp => &mut self.sp,
         }
     }
 
