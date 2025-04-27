@@ -11,11 +11,11 @@ pub struct RukaVM {
     call: Vec<f64>,
     stack: Vec<f64>,
     pc: f64,
-    rax: f64,
-    rdx: f64,
-    rcx: f64,
-    rbx: f64,
-    rsp: f64,
+    ar: f64,
+    dr: f64,
+    cr: f64,
+    ba: f64,
+    sp: f64,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -30,7 +30,6 @@ pub enum Instruction {
     Nor(Register, Operand),
     Jmp(Operand, Operand),
     Cal(Operand),
-    Sys(Operand),
     Ret,
     Lda(Register, Operand),
     Sta(Operand, Operand),
@@ -49,9 +48,9 @@ pub enum Operand {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Register {
     Pc,
-    Rax,
-    Rdx,
-    Rcx,
-    Rbx,
-    Rsp,
+    Ar,
+    Dr,
+    Cr,
+    Ba,
+    Sp,
 }
