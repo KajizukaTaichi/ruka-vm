@@ -39,6 +39,6 @@
 |PC|Program Counter|次の命令のアドレス|
 |AR|Accumulator Register|演算結果の格納|
 |DR|Data Register|データの格納|
-|CR|Conditional Register|ジャンプ等の条件|
+|CR|Conditional Register|条件の格納|
 |BA|Base Address|メモリの基底アドレス|
 |SP|Stack Pointer|スタックに長さ|
