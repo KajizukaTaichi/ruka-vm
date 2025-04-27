@@ -34,11 +34,11 @@
 |HLT|プログラム終了|
 
 ## レジスタ
-|名前|役割|
-|---|---|
-|PC|プログラムカウンタ|
-|RAX|演算結果の格納|
-|RDX|データの格納|
-|RCX|繰り返しの条件|
-|RBX|アドレス値の格納|
-|RSP|スタックポインタ|
+|名前|意味|役割|
+|---|---|---|
+|PC|Program Counter|次の命令のアドレス|
+|AR|Accumulator Register|演算結果の格納|
+|DR|Data Register|データの格納|
+|CR|Conditional Register|ジャンプ等の条件|
+|BA|Base Address|メモリの基底アドレス|
+|SP|Stack Pointer|スタックに長さ|
