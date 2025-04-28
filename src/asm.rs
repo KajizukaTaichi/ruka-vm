@@ -21,6 +21,23 @@ pub fn asm(source: &str) -> Option<Vec<Instruction>> {
             instructions.push(mnemonic);
         }
     }
+
+    index = 0;
+    instructions.clear();
+    for line in source.lines() {
+        let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
+        if let Some(label) = line.trim().strip_suffix(":") {
+            labels.insert(label.trim().to_string(), index as f64);
+        } else if Instruction::asm(line.trim(), &mut labels).is_some() {
+            index += 1;
+        }
+    }
+    for line in source.lines() {
+        let (line, _comment) = line.split_once(';').unwrap_or((line, ""));
+        if let Some(mnemonic) = Instruction::asm(line.trim(), &mut labels) {
+            instructions.push(mnemonic);
+        }
+    }
     Some(instructions)
 }
 
