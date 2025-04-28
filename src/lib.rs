@@ -1,21 +1,24 @@
 mod asm;
 mod eval;
+mod value;
+
 pub use asm::asm;
+pub use value::Value;
 
 pub const MEMORY_SIZE: usize = 64;
 
 #[derive(Debug, Clone, PartialEq)]
 pub struct RukaVM {
-    memory: [f64; MEMORY_SIZE],
+    memory: [Value; MEMORY_SIZE],
     program: Vec<Instruction>,
-    call: Vec<f64>,
-    stack: Vec<f64>,
-    pc: f64,
-    ar: f64,
-    dr: f64,
-    cr: f64,
-    ba: f64,
-    sp: f64,
+    call: Vec<Value>,
+    stack: Vec<Value>,
+    pc: Value,
+    ar: Value,
+    dr: Value,
+    cr: Value,
+    ba: Value,
+    sp: Value,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq)]
@@ -41,7 +44,7 @@ pub enum Instruction {
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Operand {
-    Literal(f64),
+    Literal(Value),
     Register(Register),
 }
 
