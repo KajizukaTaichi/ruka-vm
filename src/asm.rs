@@ -100,9 +100,9 @@ impl Operand {
         Some(if let Some(register) = Register::asm(source) {
             Self::Register(register)
         } else if let Ok(literal) = source.parse() {
-            Self::Literal(literal)
+            Self::Literal(Value::new(literal))
         } else if let Some(literal) = labels.get(source) {
-            Self::Literal(*literal)
+            Self::Literal(Value::new(*literal))
         } else {
             return None;
         })
